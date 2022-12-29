@@ -16,7 +16,7 @@ router.get('/todosProdutos', (req, res) => {
 })
 
 router.get('/cadastrarProduto', (req, res) => {
-  res.render('addProduto.ejs')
+  res.render('addProduto.ejs', {produto:{}})
 })
 
 
@@ -31,5 +31,23 @@ router.post('/addProduto', (req, res) => {
 
 })
 
+router.get('/editar/:id', (req, res) => {
+  db.query('SELECT * FROM produtos WHERE id = ?', [req.params.id], function(erro, resultado){
+    if(erro){
+      res.status(200).send('Erro: ' + erro)
+    }
+    res.render('addProduto.ejs', {produto : resultado[0]})
+  })
+})
+
+router.post('/edit/:id', (req, res) => {
+  db.query('UPDATE produtos SET nome = ?, preco = ? WHERE id = ?', [req.body.nome, req.body.preco, req.params.id], 
+  function(erro){
+    if(erro){
+      res.status(200).send('Erro: ' + erro)
+    }
+    res.redirect('/todosProdutos')
+  })
+})
 
 module.exports = router;

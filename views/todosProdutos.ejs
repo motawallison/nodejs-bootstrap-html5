@@ -24,6 +24,8 @@
                 <tr>
                     <th>Nome</th>
                     <th>Preco</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,6 +37,8 @@
                         <td>
                             <%= item.preco %>
                         </td>
+                        <td><a href="/editar/<%= item.id%>" class="btn btn-success">Editar</a></td>
+                        <td><a href="#" class="btn btn-danger">Excluir</a></td>
                     </tr>
                     <% } %>
             </tbody>
