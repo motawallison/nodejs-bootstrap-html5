@@ -18,7 +18,7 @@
         Todos os produtos
     </h1>
 
-    <div class="table-responsive">
+    <div class="table">
         <table class="table table-hover table-bordered">
             <thead class="table-dark">
                 <tr>
@@ -59,22 +59,23 @@
         crossorigin="anonymous"></script>
 
     <script>
-        function excluir(id){
+        function excluir(id) {
             var res = confirm('Excluir registro?')
-            if(res){
-            $.ajax({
-                url: `/delete/${id}`,
-                type: 'DELETE',
-                success: function(resultado){
-                    location.reload()
-                    if(resultado == 'OK'){
+            if (res) {
+                $.ajax({
+                    url: `/delete/${id}`,
+                    type: 'DELETE',
+                    success: function (resultado) {
                         location.reload()
-                    }else{
-                        alert(resultado)
-                    }
+                        if (resultado == 'OK') {
+                            location.reload()
+                        } else {
+                            alert(resultado)
+                        }
 
-                }
-            })}
+                    }
+                })
+            }
         }
     </script>
 
