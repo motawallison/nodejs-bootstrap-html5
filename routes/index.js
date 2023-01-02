@@ -50,4 +50,16 @@ router.post('/edit/:id', (req, res) => {
   })
 })
 
+router.delete('/delete/:id', (req, res) => {
+  db.query('DELETE FROM produtos WHERE id = ?', [req.params.id], 
+  function(erro){
+    if(erro){
+      res.status(200).send('Erro: ' + erro)
+    }else{
+      res.status(200).send('OK')
+    }
+  })
+})
+
+
 module.exports = router;
