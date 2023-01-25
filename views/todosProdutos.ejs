@@ -26,6 +26,7 @@
                     <th>Preco</th>
                     <th>Editar</th>
                     <th>Excluir</th>
+                    <th>Estoque</th>
                 </tr>
             </thead>
             <tbody style="text-transform: uppercase;">
@@ -37,8 +38,8 @@
                         <td>
                           R$  <%= item.preco %>
                         </td>
-                        <td><a href="/editar/<%= item.id%>" class="btn btn-success">Editar</a></td>
-                        <td><a href="#" class="btn btn-danger" onclick="excluir(<%= item.id %>)">Excluir</a></td>
+                        <td><a href="/editar/<%= item.IDPROD %>" class="btn btn-success">Editar</a></td>
+                        <td><a href="#" class="btn btn-danger" onclick="excluir(<%= item.IDPROD %>)">Excluir</a></td>
                     </tr>
                     <% } %>
             </tbody>
@@ -59,18 +60,19 @@
         crossorigin="anonymous"></script>
 
     <script>
-        function excluir(id) {
+        function excluir(IDPROD) {
             var res = confirm('Excluir registro?')
             if (res) {
                 $.ajax({
-                    url: `/delete/${id}`,
+                    url: `/delete/${IDPROD}`,
                     type: 'DELETE',
                     success: function (resultado) {
                         location.reload()
                         if (resultado == 'OK') {
                             location.reload()
                         } else {
-                            alert(resultado)
+                            alert(` ATENÇÃO:  CONFERIR SE HÁ REGISTRO NO ESTOQUE DO PARA O PRODUTO 
+                             ` + resultado )
                         }
 
                     }

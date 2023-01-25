@@ -18,8 +18,8 @@
         CADASTRO DO PRODUTO
     </h1>
 
-    <% if (produto.id){ %>
-    <form method="POST" action="/edit/<%= produto.id %>"> 
+    <% if (produto.IDPROD){ %>
+    <form method="POST" action="/edit/<%= produto.IDPROD %>"> 
     <% } else { %>
     <form method="POST" action="/addProduto"> 
     <% } %>
